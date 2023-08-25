@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import ExpenseList from "./expense-tracker/expenseComponents/Expenselist";
+import Form from "./components/Form";
+import { useState } from "react";
+import Filter from "./expense-tracker/expenseComponents/Filter";
+import { any } from "zod";
 function App() {
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [expenses, setExpenses] = useState([
+    {
+      id: 1,
+      discription: "abc",
+      amount: 10,
+      category: "utilities",
+    },
+    {
+      id: 2,
+      discription: "asd",
+      amount: 10,
+      category: "utilities",
+    },
+    {
+      id: 3,
+      discription: "dsa",
+      amount: 10,
+      category: "utilities",
+    },
+  ]);
+
+  const visibleExpenses = selectedCategory
+    ? expenses.filter((e) => e.category === selectedCategory)
+    : expenses;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form />
+      <div className="m-5">
+        <Filter
+          onSelectCategory={(category) => setSelectedCategory(category)}
+        />
+      </div>
+      <ExpenseList
+        expenses={visibleExpenses}
+        onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
+      />
     </div>
   );
 }
