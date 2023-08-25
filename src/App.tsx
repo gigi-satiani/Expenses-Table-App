@@ -3,7 +3,8 @@ import ExpenseList from "./expense-tracker/expenseComponents/Expenselist";
 import Form from "./components/Form";
 import { useState } from "react";
 import Filter from "./expense-tracker/expenseComponents/Filter";
-import { any } from "zod";
+import { categories } from "./expense-tracker/Category";
+
 function App() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [expenses, setExpenses] = useState([
@@ -33,16 +34,26 @@ function App() {
 
   return (
     <div className="App">
-      <Form />
+      <div className="m-5">
+        <Form
+          onSubmit={(expense) =>
+            setExpenses([...expenses, { ...expense, id: expenses.length + 1 }])
+          }
+        />
+      </div>
+
       <div className="m-5">
         <Filter
           onSelectCategory={(category) => setSelectedCategory(category)}
         />
       </div>
-      <ExpenseList
-        expenses={visibleExpenses}
-        onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
-      />
+
+      <div className="m-5">
+        <ExpenseList
+          expenses={visibleExpenses}
+          onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
+        />
+      </div>
     </div>
   );
 }

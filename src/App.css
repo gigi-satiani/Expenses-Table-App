@@ -18,7 +18,6 @@
   width: 60%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background-color: burlywood;
   padding: 5px;
 }

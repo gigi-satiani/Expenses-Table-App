@@ -1,4 +1,4 @@
-import React from "react";
+import { categories } from "../../expense-tracker/Category";
 
 interface Props {
   onSelectCategory: (category: string) => void;
@@ -11,9 +11,11 @@ const Filter = ({ onSelectCategory }: Props) => {
       onChange={(event) => onSelectCategory(event.target.value)}
     >
       <option value="">All categories</option>
-      <option value="groceries">Groceries</option>
-      <option value="utilities">utilities</option>
-      <option value="entertainment">Entertainment</option>
+      {categories.map((category) => (
+        <option key={category} value={category}>
+          {category}
+        </option>
+      ))}
     </select>
   );
 };
