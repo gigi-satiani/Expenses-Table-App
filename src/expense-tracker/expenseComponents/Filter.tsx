@@ -1,4 +1,5 @@
 import { categories } from "../../expense-tracker/Category";
+import "../../App.css";
 
 interface Props {
   onSelectCategory: (category: string) => void;

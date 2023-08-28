@@ -1,6 +1,8 @@
+import "../../App.css";
+
 interface Expense {
   id: number;
-  discription: string;
+  description: string;
   amount: number;
   category: string;
 }
@@ -13,7 +15,7 @@ interface Props {
 const ExpenseList = ({ expenses, onDelete }: Props) => {
   if (expenses.length === 0) return <div>No Expenses</div>;
   return (
-    <div>
+    <div className="expenseTable">
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -26,7 +28,7 @@ const ExpenseList = ({ expenses, onDelete }: Props) => {
         <tbody>
           {expenses.map((expense) => (
             <tr key={expense.id}>
-              <td>{expense.discription}</td>
+              <td>{expense.description}</td>
               <td>{expense.amount}</td>
               <td>{expense.category}</td>
               <td>
