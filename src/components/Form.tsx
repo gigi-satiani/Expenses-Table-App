@@ -27,7 +27,7 @@ const Form = ({ onSubmit }: Props) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   // const onSubmit = (data: any) => console.log(data);
